@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Project;
 import play.mvc.Http.Context;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -15,6 +16,13 @@ public class Secured extends Security.Authenticator{
 	public Result onUnauthorized(Context ctx)
 	{
 		return redirect(routes.Application.login());
+	}
+	
+	public static boolean isMemberOf(Long project) {
+	    return Project.isMember(
+	        project,
+	        Context.current().request().username()
+	    );
 	}
 	
 	

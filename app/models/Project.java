@@ -48,5 +48,19 @@ public class Project extends Model {
 		return projeFinder.where().eq("member.user", email).findList();
 
 	}
+	
+	public static boolean isMember(Long project, String user) {
+	    return projeFinder.where()
+	        .eq("members.email", user)
+	        .eq("id", project)
+	        .findRowCount() > 0;
+	}
+
+	public static String rename(Long projectId, String newName) {
+	    Project project = projeFinder.ref(projectId);
+	    project.name = newName;
+	    project.update();
+	    return newName;
+	}
 
 }
