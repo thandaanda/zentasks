@@ -1,0 +1,37 @@
+@(form: Form[Application.Login])
+
+<html>
+<head>
+<title>Zentasks</title>
+<link rel="stylesheet" type="text/css" media="screen"
+	href="@routes.Assets.at("stylesheets/main.css")">
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.7.1.js")"></script>
+</head>
+<body>
+	<header>
+		<a href="@routes.Application.index" id="logo"><span>Zen</span>tasks</a>
+	</header>
+	@helper.form(routes.Application.authenticate) {
+
+
+	<h1>Sign in</h1>
+
+	<p>
+		<input type="email" name="email" placeholder="Email" value="@form("email").valueOr("")">
+	</p>
+	<p>
+		<input type="password" name="password" placeholder="Password">
+	</p>
+	<p>
+		<button type="submit">Login</button>
+	</p>
+	} @if(flash.contains("success")) {
+	<p class="success">@flash.get("success")</p>
+	} @if(form.hasGlobalErrors) {
+	<p class="error">@form.globalError.message</p>
+	}
+
+
+
+</body>
+</html>
