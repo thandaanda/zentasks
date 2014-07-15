@@ -47,7 +47,6 @@ public class Application extends Controller {
 				return "Invalid user or password";
 			}
 			aLogger.info("is it null");
-			aLogger.info("Changing for controllerfix branch");
 			return null;
 		}
 	}
