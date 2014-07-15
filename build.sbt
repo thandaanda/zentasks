@@ -10,5 +10,7 @@ libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,
   cache,
-  javaWs
+  javaWs,
+  "org.fluentlenium" % "fluentlenium-core" % "0.10.0",
+  "postgresql" % "postgresql" % "9.1-901-1.jdbc4"
 )

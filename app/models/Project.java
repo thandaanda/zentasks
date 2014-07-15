@@ -26,26 +26,26 @@ public class Project extends Model {
 	public String folder;
 
 	@ManyToMany(cascade = CascadeType.REMOVE)
-	public List<User> members = new ArrayList<User>();
+	public List<UserDetails> members = new ArrayList<UserDetails>();
 
-	public Project(String name, String folder, User member) {
+	public Project(String name, String folder, UserDetails owner) {
 		this.name = name;
 		this.folder = folder;
-		this.members.add(member);
+		this.members.add(owner);
 	}
 
 	public static Model.Finder<Long, Project> projeFinder = new Model.Finder<>(
 			Long.class, Project.class);
 
 	public static Project create(String name, String folder, String owner) {
-		Project project = new Project(name, folder, User.userFinder.ref(owner));
+		Project project = new Project(name, folder, UserDetails.userFinder.ref(owner));
 		project.save();
-		project.saveManyToManyAssociations(owner);
+		project.saveManyToManyAssociations("members");
 		return project;
 	}
 
 	public static List<Project> findInvolving(String email) {
-		return projeFinder.where().eq("member.user", email).findList();
+		return projeFinder.where().eq("members.email", email).findList();
 
 	}
 	

@@ -32,17 +32,17 @@ public class ModelTest extends WithApplication {
 	 * }
 	 */@Test
 	public void tryAuthenticateUser() {
-		new User("bob@gmail.com", "Bob", "secret").save();
+		new UserDetails("bob@gmail.com", "Bob", "secret").save();
 
-		assertNotNull(User.authenticate("bob@gmail.com", "secret"));
-		assertNull(User.authenticate("bob@gmail.com", "badpassword"));
-		assertNull(User.authenticate("tom@gmail.com", "secret"));
+		assertNotNull(UserDetails.authenticate("bob@gmail.com", "secret"));
+		assertNull(UserDetails.authenticate("bob@gmail.com", "badpassword"));
+		assertNull(UserDetails.authenticate("tom@gmail.com", "secret"));
 	}
 
 	@Test
 	public void findProjectsInvolving() {
-		new User("bob@gmail.com", "Bob", "secret").save();
-		new User("jane@gmail.com", "Jane", "secret").save();
+		new UserDetails("bob@gmail.com", "Bob", "secret").save();
+		new UserDetails("jane@gmail.com", "Jane", "secret").save();
 
 		Project.create("Play 2", "play", "bob@gmail.com");
 		Project.create("Play 1", "play", "jane@gmail.com");

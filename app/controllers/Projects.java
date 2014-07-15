@@ -1,13 +1,15 @@
 package controllers;
 
+import static play.data.Form.form;
+
 import java.util.ArrayList;
 
 import models.Project;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
-import static play.data.Form.*;
-import views.html.tasks.item;
+import views.html.projects.group;
+import views.html.projects.item;
 
 @Security.Authenticated(Secured.class)
 public class Projects extends Controller {
@@ -38,6 +40,6 @@ public class Projects extends Controller {
 	}
 
 	public static Result addGroup() {
-		return ok(group.render("New group", new ArrayList<Project>()));
+		return ok(group.render("New Group", new ArrayList<Project>()));
 	}
 }

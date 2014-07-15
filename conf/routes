@@ -21,3 +21,11 @@ POST    /projects                   controllers.Projects.add()
 POST    /projects/groups            controllers.Projects.addGroup()
 DELETE  /projects/:project          controllers.Projects.delete(project: Long)
 PUT     /projects/:project          controllers.Projects.rename(project: Long)
+
+
+GET     /assets/javascripts/routes          controllers.Application.javascriptRoutes()
+
+GET     /projects/:project/tasks    controllers.Tasks.index(project: Long)
+
+
+POST    /projects/:project/tasks    controllers.Tasks.add(project: Long, folder: String)

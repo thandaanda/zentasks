@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import play.db.ebean.Model;
 
 @Entity
-public class User extends Model {
+public class UserDetails extends Model {
 
 	/**
 	 * 
@@ -20,16 +20,16 @@ public class User extends Model {
 
 	public String password;
 
-	public User(String email, String name, String password) {
+	public UserDetails(String email, String name, String password) {
 		this.email = email;
 		this.name = name;
 		this.password = password;
 	}
 
-	public static Finder<String, User> userFinder = new Finder<>(String.class,
-			User.class);
+	public static Finder<String, UserDetails> userFinder = new Finder<>(String.class,
+			UserDetails.class);
 	
-	public static User authenticate(String email, String password) {
+	public static UserDetails authenticate(String email, String password) {
         return userFinder.where().eq("email", email)
             .eq("password", password).findUnique();
     }
